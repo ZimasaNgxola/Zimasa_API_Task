@@ -27,7 +27,45 @@ public class TestimonialsRequestBuilder {
                 .post()
                 .then()
                 .extract().response();
-        testimonialId = response.jsonPath().getString("data.id");
+        testimonialId = response.jsonPath().getString("data.Id");
+
+        System.out.println("Captured testimonialId:" +testimonialId);
         return response;
     }
+
+    public static Response updateTestimonial(String updateTitle, String updateContent, String updateRating){
+
+
+        String apiPath = "/APIDEV/testimonials/" + testimonialId;
+        Response response = given()
+                .baseUri(BASE_URL)
+                .header("Authorization", "Bearer " + adminToken)
+                .basePath(apiPath)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body(TestimonialPayLoad.updateTestimonialPayLoad(updateTitle, updateContent, updateRating))
+                .when()
+                .put()
+                .then()
+                .extract().response();
+        testimonialId = response.jsonPath().getString("data.Id");
+        return response;
+    }
+
+    public static Response deleteTestimonial(){
+        String apiPath = "/APIDEV/testimonials/" + testimonialId;
+        Response response = given()
+                .baseUri(BASE_URL)
+                .header("Authorization", "Bearer " + adminToken)
+                .basePath(apiPath)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .when()
+                .delete()
+                .then()
+                .extract().response();
+        testimonialId = response.jsonPath().getString("data.Id");
+        return response;
+    }
+
 }

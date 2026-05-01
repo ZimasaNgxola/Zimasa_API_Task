@@ -13,4 +13,19 @@ public class TestimonialPayLoad {
 
         return createTestimonial;
     }
+
+    public static JSONObject updateTestimonialPayLoad(String title, String content, String rating){
+        JSONObject updateTestimonial = new JSONObject();
+        updateTestimonial.put("title", title);
+        updateTestimonial.put("content", content);
+        updateTestimonial.put("rating", rating);
+
+        return updateTestimonial;
+    }
+
+    public static JSONObject deleteTestimonial(){
+        JSONObject deleteTestimonial = new JSONObject();
+
+        return deleteTestimonial;
+    }
 }
